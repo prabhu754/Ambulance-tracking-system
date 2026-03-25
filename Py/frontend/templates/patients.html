@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="fw-bold text-success">🧑‍⚕️ Patients</h2>
+<p class="text-muted">Registered patients and last recorded vitals.</p>
+
+<table class="table table-striped shadow-sm">
+  <thead class="table-light">
+    <tr>
+      <th>Patient ID</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Condition</th>
+      <th>Vitals</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in patients %}
+    <tr>
+      <td>{{ p.patient_id }}</td>
+      <td>{{ p.patient_name }}</td>
+      <td>{{ p.patient_age }}</td>
+      <td>{{ p.patient_condition }}</td>
+      <td>
+        ❤️ HR: {{ p.vital_signs.heart_rate }} <br>
+        💉 BP: {{ p.vital_signs.blood_pressure_systolic }}/{{ p.vital_signs.blood_pressure_diastolic }} <br>
+        🫁 SpO₂: {{ p.vital_signs.oxygen_saturation }}%
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

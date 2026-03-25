@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="text-center">
+  <h1 class="fw-bold text-danger">🚨 Emergency Response Dashboard</h1>
+  <p class="text-muted">Live monitoring of incidents, patients, and hospital capacity.</p>
+</div>
+
+<div class="row mt-4">
+  <div class="col-md-3">
+    <div class="card text-center shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title text-primary">🏥 Hospitals</h5>
+        <h2 class="fw-bold">{{ hospital_count }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card text-center shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title text-success">🧑‍⚕️ Patients</h5>
+        <h2 class="fw-bold">{{ patient_count }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card text-center shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title text-danger">🚨 Incidents</h5>
+        <h2 class="fw-bold">{{ incident_count }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card text-center shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title text-warning">🚑 Ambulances</h5>
+        <h2 class="fw-bold">{{ ambulance_count }}</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-md-12">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title text-info">📍 Ambulance Location</h5>
+        <div id="location-display">
+          <p id="location-text">Waiting for location data...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function updateLocation() {
+  fetch('/location')
+    .then(response => response.json())
+    .then(data => {
+      if (data.lat && data.lng) {
+        document.getElementById('location-text').innerText = `Latitude: ${data.lat}, Longitude: ${data.lng}`;
+      } else {
+        document.getElementById('location-text').innerText = 'No location data available';
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching location:', error);
+      document.getElementById('location-text').innerText = 'Error fetching location';
+    });
+}
+
+window.onload = function() {
+  updateLocation();
+  setInterval(updateLocation, 2000); // Update every 2 seconds
+};
+</script>
+{% endblock %}
