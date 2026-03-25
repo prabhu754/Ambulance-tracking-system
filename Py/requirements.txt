@@ -16,3 +16,7 @@ scipy>=1.11.4
 # Data Visualization (For training/evaluation)
 matplotlib>=3.8.2
 seaborn>=0.13.0
+
+
+
+pip install -r Py/requirements.txt
