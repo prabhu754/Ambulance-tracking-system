@@ -4,3 +4,6 @@ pymongo
 dnspython
 geopy
 python-dotenv
+
+
+pip install -r Py/backend/requirements.txt
