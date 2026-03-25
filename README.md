@@ -67,15 +67,12 @@ The physical ambulance prototype utilizes the following IoT components for live 
    cd RapidResponse-AI
 Create a virtual environment:
 
-Bash
+```bash
 python -m venv venv
 source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 Install the required dependencies:
-
-Bash
 pip install -r requirements.txt
-Environment Variables:
-Create a .env file in the root directory and add your configuration details:
+```
 
 Code snippet
 MONGO_URI=your_mongodb_connection_string
@@ -83,7 +80,21 @@ MAPS_API_KEY=your_api_key
 FLASK_APP=app.py
 FLASK_ENV=development
 Run the Flask server:
-
-Bash
+```bash
 flask run
+```
 The application will be available at http://localhost:5000.
+
+
+## Project Highlights
+
+**RapidResponse AI** is an intelligent emergency medical response platform featuring:
+
+- **Accident Detection:** CNN + SVM hybrid model for autonomous visual analysis
+- **Dynamic Routing:** Deep Q-Networks (DQN) for traffic-aware ambulance optimization
+- **Patient Monitoring:** LSTM networks with attention mechanisms for real-time vital sign analysis
+- **Hospital Triage:** NSGA-II multi-objective optimization for best facility recommendations
+- **IoT Integration:** ESP32-based hardware with GPS and medical sensors
+- **Real-time Communication:** MongoDB Atlas for live data synchronization
+
+The system is built primarily in **Python** (97.7%) with Flask for the backend REST API, and supports UN SDGs 3, 9, and 11 for sustainable healthcare and infrastructure improvements.
